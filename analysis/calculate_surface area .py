@@ -92,7 +92,7 @@ def main():
     """Main entry point for surface area computation."""
     subjects_df = pd.read_csv(SUBJECTS_CSV)
     n_subjects = len(subjects_df)
-    print(f"🧠 Starting surface area computation for {n_subjects} subjects...")
+    print(f"Starting surface area computation for {n_subjects} subjects...")
 
     all_results = []
     for i, row in subjects_df.iterrows():
@@ -102,12 +102,12 @@ def main():
             res = calculate_network_area(subject_id)
             all_results.append({**row.to_dict(), **res})
         except Exception as e:
-            print(f"⚠️ Failed to process {subject_id}: {e}")
+            print(f"Failed to process {subject_id}: {e}")
 
     final_df = pd.DataFrame(all_results)
     output_file = f"{OUTPUT_DIR}/surface_areas_by_network.csv"
     final_df.to_csv(output_file, index=False)
-    print(f"\n✅ Results saved to: {output_file}")
+    print(f"\n Results saved to: {output_file}")
     print(f"Columns included:\n{final_df.columns.tolist()}")
 
 
